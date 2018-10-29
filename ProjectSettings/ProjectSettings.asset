@@ -611,8 +611,8 @@ PlayerSettings:
       EnterpriseAuthentication: False
       HumanInterfaceDevice: False
       InputInjectionBrokered: False
-      InternetClient: False
-      InternetClientServer: False
+      InternetClient: True
+      InternetClientServer: True
       Location: False
       Microphone: False
       MusicLibrary: False
@@ -623,7 +623,7 @@ PlayerSettings:
       Proximity: False
       RemovableStorage: False
       SharedUserCertificates: False
-      SpatialPerception: True
+      SpatialPerception: False
       UserAccountInformation: False
       VideosLibrary: False
       VoipCall: False
