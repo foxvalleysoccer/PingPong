@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class SpawnANdForce : MonoBehaviour
+public class SpawnANdForce : NetworkBehaviour
 {
 
     public GameObject pingPongBallPrefab;
@@ -13,14 +14,14 @@ public class SpawnANdForce : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("Fire", spawnTime, spawnTime);
+        InvokeRepeating("SpwanPongBall", spawnTime, spawnTime);
     }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Fire();
+            SpwanPongBall();
         }
     }
 
@@ -32,11 +33,14 @@ public class SpawnANdForce : MonoBehaviour
         Destroy(bullet);
     }
 
-    public void Fire()
+    public void SpwanPongBall()
+    {
+        CmdStartBall();
+    }
+    [Command]
+    public void CmdStartBall()
     {
         GameObject bullet = Instantiate(pingPongBallPrefab);
-        // Physics.IgnoreCollision(bullet.GetComponent<Collider>());
-        // Physics.IgnoreCollision(bullet.GetComponent<Collider>(), bulletSpawnpoint.parent.GetComponent<Collider>());
         bullet.transform.position = ballSpawnPoint.position;
 
         Vector3 rotation = bullet.transform.rotation.eulerAngles;
@@ -44,6 +48,7 @@ public class SpawnANdForce : MonoBehaviour
         bullet.transform.rotation = Quaternion.Euler(rotation.x, transform.eulerAngles.y, rotation.z);
 
         bullet.GetComponent<Rigidbody>().AddForce(ballSpawnPoint.forward * ballSpeed, ForceMode.Impulse);
+        NetworkServer.Spawn(bullet);
         StartCoroutine(DestroyBulletAfterTime(bullet, ballLiveTime));
         Debug.Log("fIRED");
     }
