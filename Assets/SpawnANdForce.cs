@@ -47,8 +47,11 @@ public class SpawnANdForce : NetworkBehaviour
 
         bullet.transform.rotation = Quaternion.Euler(rotation.x, transform.eulerAngles.y, rotation.z);
 
-        bullet.GetComponent<Rigidbody>().AddForce(ballSpawnPoint.forward * ballSpeed, ForceMode.Impulse);
-        NetworkServer.Spawn(bullet);
+        //bullet.GetComponent<Rigidbody>().AddForce(ballSpawnPoint.forward * ballSpeed, ForceMode.Impulse);
+
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 12;
+
+       NetworkServer.Spawn(bullet);
         StartCoroutine(DestroyBulletAfterTime(bullet, ballLiveTime));
         Debug.Log("fIRED");
     }
