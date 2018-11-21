@@ -26,16 +26,16 @@ public class MyVRPlayerController : NetworkBehaviour
     [SyncVar]
     private Quaternion remoteHeadRotation;
 
-    private void OnEnable()
-    {
-        InputTracking.nodeAdded += InputTracking_nodeAdded;
-        InputTracking.nodeRemoved += InputTracking_nodeRemoved;
-    }
-    private void OnDisable()
-    {
-        InputTracking.nodeAdded -= InputTracking_nodeAdded;
-        InputTracking.nodeRemoved -= InputTracking_nodeRemoved;
-    }
+    //private void OnEnable()
+    //{
+    //    InputTracking.nodeAdded += InputTracking_nodeAdded;
+    //    InputTracking.nodeRemoved += InputTracking_nodeRemoved;
+    //}
+    //private void OnDisable()
+    //{
+    //    InputTracking.nodeAdded -= InputTracking_nodeAdded;
+    //    InputTracking.nodeRemoved -= InputTracking_nodeRemoved;
+    //}
 
     // Use this for initialization
     void Start()
@@ -58,8 +58,8 @@ public class MyVRPlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputTracking.nodeAdded += InputTracking_nodeAdded;
-        InputTracking.nodeRemoved += InputTracking_nodeRemoved;
+        //InputTracking.nodeAdded += InputTracking_nodeAdded;
+        //InputTracking.nodeRemoved += InputTracking_nodeRemoved;
 
         if (!isLocalPlayer)
         {
@@ -88,33 +88,33 @@ public class MyVRPlayerController : NetworkBehaviour
         CmdTransform(CameraCache.Main.transform.position, CameraCache.Main.transform.rotation, remoteLeftControllerRotation, remoteRightControllerRotation, remoteRightControllerPosition, remoteLeftControllerPosition, head.transform.rotation);
     }
 
-    private void InputTracking_nodeRemoved(XRNodeState obj)
-    {
-        if (obj.nodeType == XRNode.LeftHand)
-        {
-            leftHand.SetActive(false);
-        }
+    //private void InputTracking_nodeRemoved(XRNodeState obj)
+    //{
+    //    if (obj.nodeType == XRNode.LeftHand)
+    //    {
+    //        leftHand.SetActive(false);
+    //    }
 
-        if (obj.nodeType == XRNode.RightHand)
-        {
-            rightHand.SetActive(false);
-        }
+    //    if (obj.nodeType == XRNode.RightHand)
+    //    {
+    //        rightHand.SetActive(false);
+    //    }
 
-        InputTracking.nodeRemoved -= InputTracking_nodeRemoved;
-    }
+    //    InputTracking.nodeRemoved -= InputTracking_nodeRemoved;
+    //}
 
-    private void InputTracking_nodeAdded(XRNodeState obj)
-    {
-        if (obj.nodeType == XRNode.LeftHand)
-        {
-            leftHand.SetActive(true);
-        }
+    //private void InputTracking_nodeAdded(XRNodeState obj)
+    //{
+    //    if (obj.nodeType == XRNode.LeftHand)
+    //    {
+    //        leftHand.SetActive(true);
+    //    }
 
-        if (obj.nodeType == XRNode.RightHand)
-        {
-            rightHand.SetActive(true);
-        }
-    }
+    //    if (obj.nodeType == XRNode.RightHand)
+    //    {
+    //        rightHand.SetActive(true);
+    //    }
+    //}
 
 
     /// Sets the localPosition and localRotation on clients.
