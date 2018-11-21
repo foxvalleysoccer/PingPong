@@ -43,8 +43,9 @@ public class MyVRPlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             head.GetComponent<Renderer>().material.color = Color.green;
-            rightHand.GetComponent<Renderer>().material.color = Color.yellow;
-            leftHand.GetComponent<Renderer>().material.color = Color.yellow;
+            rightHand.SetActive(false);
+            leftHand.SetActive(false);
+           // leftHand.GetComponent<Renderer>().material.color = Color.yellow;
         }
         else
         {
@@ -76,10 +77,10 @@ public class MyVRPlayerController : NetworkBehaviour
         remoteRightControllerPosition = (InputTracking.GetLocalPosition(XRNode.RightHand) - CameraCache.Main.transform.localPosition);
         remoteLeftControllerPosition = (InputTracking.GetLocalPosition(XRNode.LeftHand) - CameraCache.Main.transform.localPosition);
 
-        rightHand.transform.rotation = remoteRightControllerRotation;
-        leftHand.transform.rotation = remoteLeftControllerRotation;
-        rightHand.transform.localPosition = remoteRightControllerPosition;
-        leftHand.transform.localPosition = remoteLeftControllerPosition;
+      //  rightHand.transform.rotation = remoteRightControllerRotation;
+      //  leftHand.transform.rotation = remoteLeftControllerRotation;
+       // rightHand.transform.localPosition = remoteRightControllerPosition;
+        //leftHand.transform.localPosition = remoteLeftControllerPosition;
 
         head.transform.rotation = CameraCache.Main.transform.localRotation;
         transform.position = CameraCache.Main.transform.position;
