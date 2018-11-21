@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using HoloToolkit.Unity;
+using UnityEngine.XR;
 
 public class SpawnANdForce : NetworkBehaviour
 {
@@ -35,7 +37,10 @@ public class SpawnANdForce : NetworkBehaviour
 
     public void SpwanPongBall()
     {
-        CmdStartBall();
+        if (isServer)
+        {
+            CmdStartBall();
+        }
     }
     [Command]
     public void CmdStartBall()
@@ -51,7 +56,7 @@ public class SpawnANdForce : NetworkBehaviour
 
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 12;
 
-       NetworkServer.Spawn(bullet);
+        NetworkServer.Spawn(bullet);
         StartCoroutine(DestroyBulletAfterTime(bullet, ballLiveTime));
         Debug.Log("fIRED");
     }
