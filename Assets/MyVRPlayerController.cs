@@ -49,9 +49,9 @@ public class MyVRPlayerController : NetworkBehaviour
         }
         else
         {
-            head.GetComponent<Renderer>().material.color = Color.red;
-            rightHand.GetComponent<Renderer>().material.color = Color.black;
-            leftHand.GetComponent<Renderer>().material.color = Color.black;
+            //head.GetComponent<Renderer>().material.color = Color.red;
+            //rightHand.GetComponent<Renderer>().material.color = Color.black;
+            //leftHand.GetComponent<Renderer>().material.color = Color.black;
         }
     }
 
@@ -85,7 +85,7 @@ public class MyVRPlayerController : NetworkBehaviour
         head.transform.rotation = CameraCache.Main.transform.localRotation;
         transform.position = CameraCache.Main.transform.position;
         transform.rotation = CameraCache.Main.transform.parent.rotation;
-        CmdTransform(CameraCache.Main.transform.position, CameraCache.Main.transform.rotation, leftHand.transform.rotation, rightHand.transform.rotation, rightHand.transform.localPosition, leftHand.transform.localPosition, head.transform.rotation);
+        CmdTransform(CameraCache.Main.transform.position, CameraCache.Main.transform.rotation, remoteLeftControllerRotation, remoteRightControllerRotation, remoteRightControllerPosition, remoteLeftControllerPosition, head.transform.rotation);
     }
 
     private void InputTracking_nodeRemoved(XRNodeState obj)
